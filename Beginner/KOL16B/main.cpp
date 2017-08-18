@@ -3,20 +3,36 @@
 
 using namespace std;
 
-int encodeInteger(int x, int n){
-	n = n<<(1<<(1<<(1<<1)));
-	x = x | n;
-	return x;
-}
-
-void encodeArray(int *A, int *B, int n){
-	for(int i=0;i<n;i++) {
-    	    A[i] = encodeInteger(A[i], B[i]);
-	}
-}
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    ll t;
+    ll x = 0;
+    cin>>t;
+    while(t--){
+        ll n;
+        cin>>n;
+        int *a = new int[n];
+        for(int i=0;i<n;i++)
+            cin>>a[i];
+        int *b = new int[n];
+        int *c = new int[n];
+        for(int i=0;i<n;i++){
+            int temp = a[i];
+            int t1 = a[i]>>16;
+            int t2 = a[i]&0x0000FFFF;
+            b[i] = t1;
+            c[i] = t2;
+        }
+        cout<<"Case "<<++x<<":"<<endl;
+        for(int i=0;i<n;i++){
+            cout<<c[i]<<" ";
+        }
+        cout<<endl;
+        for(int i=0;i<n;i++){
+            cout<<b[i]<<" ";
+        }
+        cout<<endl;
+    }
     return 0;
 }
