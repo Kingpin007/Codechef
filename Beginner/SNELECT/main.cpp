@@ -9,51 +9,29 @@ int main()
     ll t;
     cin>>t;
     while(t--){
-        char pop[100];
+        char pop[101];
         cin>>pop;
-        int arr[100];
-        int snakes1=0,snakes2=0,mongoose1=0,mongoose2=0;
+        int s=0,m=0;
         for(int i=0;pop[i]!='\0';i++){
-            if(pop[i] == 's'){
-                arr[i] = 0;
-                snakes1++;
-            }
-            else if(pop[i] == 'm'){
-                arr[i] = 1;
-                mongoose1++;
+            if(pop[i] == 'm'){
+                if(pop[i-1] == 's')
+                    pop[i-1] = 'x';
+                else if(pop[i+1] == 's')
+                    pop[i+1] = 'x';
             }
         }
         for(int i=0;pop[i]!='\0';i++){
-            if(pop[i] == 's'){
-                if(pop[i+1] == 'm' && arr[i+1] == 1){
-                    pop[i] = 'x';
-                    arr[i+1] = 0;
-                }
-                else if(pop[i-1] == 'm' && arr[i-1] == 1){
-                    pop[i] = 'x';
-                    arr[i-1] = 0;
-                }
-            }
+            if(pop[i] == 's')
+                s++;
+            else if(pop[i] == 'm')
+                m++;
         }
-        for(int i=0;pop[i]!='\0';i++){
-            if(pop[i] == 's'){
-                arr[i] = 0;
-                snakes2++;
-            }
-            else if(pop[i] == 'm'){
-                arr[i] = 1;
-                mongoose2++;
-            }
-        }
-        if(snakes2>mongoose2){
+        if(s>m)
             cout<<"snakes\n";
-        }
-        else if(snakes2==mongoose2){
+        else if(s==m)
             cout<<"tie\n";
-        }
-        else{
+        else
             cout<<"mongooses\n";
-        }
     }
     return 0;
 }
