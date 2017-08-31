@@ -1,4 +1,4 @@
 *
-!*.cpp
-!*.c
+*.cpp
+*.c
 !MakeFile
